@@ -1,0 +1,5 @@
+import { ChevronDown, SlidersHorizontal } from 'lucide-react'
+const filters = ['All tasks', 'In progress', 'Completed']
+export default function FilterTabs({ active, onChange, priority, onPriorityChange, counts = {} }) {
+  return <div className="list-toolbar"><div className="filter-tabs" role="tablist" aria-label="Filter tasks by status">{filters.map((filter) => <button type="button" key={filter} role="tab" aria-selected={active === filter} className={active === filter ? 'active' : ''} onClick={() => onChange(filter)}>{filter}<span>{counts[filter] ?? 0}</span></button>)}</div><label className="priority-select"><SlidersHorizontal size={15} aria-hidden="true" /><span className="sr-only">Filter by priority</span><span className="priority-prefix" aria-hidden="true">Priority:</span><select aria-label="Priority" value={priority} onChange={(event) => onPriorityChange(event.target.value)}><option value="All">All</option><option value="High">High</option><option value="Medium">Medium</option><option value="Low">Low</option></select><ChevronDown className="priority-chevron" size={13} aria-hidden="true" /></label></div>
+}
